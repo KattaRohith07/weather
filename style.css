@@ -1,0 +1,31 @@
+
+
+/* Weather App Example */
+#weather-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#city-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#get-weather-btn {
+    background: linear-gradient(to right, brown, red);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#weather-result {
+    margin-top: 10px;
+    font-size: 1.2em;
+    text-align: center;
+}

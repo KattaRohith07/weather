@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integration of HTML Websites</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 50px;
+        }
+      </style>
+    <style>
+        #form-creation {
+            background-image: url(https://images.unsplash.com/photo-1625225230517-7426c1be750c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #submitted-data {
+            display: none;
+            margin-top: 20px;
+            color: black;
+        }
+    </style>
+    <style>
+        /* Your existing styles here */
+
+        #tictactoe {
+            padding: 20px;
+            text-align: center;
+            color: black;
+        }
+
+        #board-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #tic-tac-toe-board {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        #tic-tac-toe-board td {
+            width: 60px;
+            height: 60px;
+            border: 1px solid black;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #game-status {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        button {
+            background: linear-gradient(to right, brown, red);
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, red, brown);
+        }
+    </style>
+</head>
+<body>
+    <!-- <header style="background-image: url(https://i.gifer.com/WBVi.gif);">
+        <h1>Integration of HTML Websites</h1>
+    </header>
+
+    <nav>
+        <a href="#form-creation">Form Creation</a>
+        <a href="#current-date-time">Current Date and Time</a>
+        <a href="#multiplication-table">Multiplication Table Generator</a>
+        <a href="#to-do-list">To-Do List</a>
+        <a href="#weather-app">Weather App</a>
+    </nav>
+    <!-- <section id="form-creation" style="background-image: url(https://images.unsplash.com/photo-1625225230517-7426c1be750c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+        <h2>Form Creation</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section> -->
+    <!-- <section id="form-creation">
+        <h2>Form Creation</h2>
+        <form id="myForm" onsubmit="submitForm(event)">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+            
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="submitted-data">
+            <h2>Submitted Data</h2>
+            <p id="submitted-name"></p>
+            <p id="submitted-email"></p>
+            <p id="submitted-dob"></p>
+            <p id="submitted-mobile"></p>
+        </div>
+    </section>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const dob = document.getElementById('dob').value;
+            const mobile = document.getElementById('mobile').value;
+
+            // Display submitted data
+            document.getElementById('submitted-name').innerText = `Name: ${firstName} ${lastName}`;
+            document.getElementById('submitted-email').innerText = `Email: ${email}`;
+            document.getElementById('submitted-dob').innerText = `Date of Birth: ${dob}`;
+            document.getElementById('submitted-mobile').innerText = `Mobile Number: ${mobile}`;
+
+            // Hide form and display submitted data
+            document.getElementById('myForm').style.display = 'none';
+            document.getElementById('submitted-data').style.display = 'block';
+        }
+    </script>
+    <section id="current-date-time" style="background-image: url(https://images.unsplash.com/photo-1506452819137-0422416856b8?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); font-weight: bold;">
+        <h2>Current Date and Time</h2>
+        <div id="datetime"></div>
+        <script>
+            function updateDateTime() {
+                const now = new Date();
+                const datetimeElement = document.getElementById('datetime');
+                datetimeElement.textContent = now.toLocaleString();
+            }
+
+            setInterval(updateDateTime, 1000);
+            updateDateTime(); // Initial call
+        </script>
+    </section>
+
+    <section id="multiplication-table" style="background-image: url(https://images.unsplash.com/photo-1560785496-321917f24016?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);" >
+        <h2>Multiplication Table Generator Example</h2>
+        <label for="number">Enter a number:</label>
+        <input type="number" id="number" min="1" max="10" style="width: 20%;">
+        <button onclick="generateTable()"
+        style="background: linear-gradient(to right, brown, red); 
+            color: white;
+            padding: 5px 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;">Generate Table</button>
+
+        <table id="table"></table>
+
+        <script>
+            function generateTable() {
+                const numberInput = document.getElementById('number');
+                const tableElement = document.getElementById('table');
+                const number = parseInt(numberInput.value);
+
+                let tableHTML = '<tr><th>Multiplicant</th><th>Product</th></tr>';
+                for (let i = 1; i <= 10; i++) {
+                    const product = number * i;
+                    tableHTML += `<tr><td>${number}</td><td>${i} x ${number} = ${product}</td></tr>`;
+                }
+
+                tableElement.innerHTML = tableHTML;
+            }
+        </script>
+    </section>
+
+    <section id="to-do-list" style="background-image: url(https://images.unsplash.com/photo-1598791318878-10e76d178023?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+        <h2>To-Do List Example</h2>
+        <div id="todo-container">
+            <input type="text" id="task" placeholder="Add a new task">
+            <button onclick="addTask()" style="background: linear-gradient(to right, brown, red); 
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;">Add Task</button>
+            <ul id="task-list"></ul>
+        </div>
+
+        <script>
+            function addTask() {
+                const taskInput = document.getElementById('task');
+                const taskList = document.getElementById('task-list');
+                const taskText = taskInput.value.trim();
+
+                if (taskText !== '') {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span class="task-text"style="color: black;font-size: 25px;font-weight: bold">${taskText}</span>
+                        <span class="task-actions">
+                            <button class="delete-task" onclick="deleteTask(this)" 
+                            style="background: linear-gradient(to right, brown, red); 
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;">Delete</button>
+                            <button class="edit-task" onclick="editTask(this)"
+                            style="background: linear-gradient(to right, brown, red); 
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;">Edit</button>
+                        </span>
+                    `;
+                    taskList.appendChild(li);
+                    taskInput.value = '';
+                }
+            }
+
+            function deleteTask(button) {
+                const li = button.closest('li');
+                li.remove();
+            }
+
+            function editTask(button) {
+                const li = button.closest('li');
+                const taskText = li.querySelector('.task-text').textContent;
+                const newTaskText = prompt('Edit task:', taskText);
+
+                if (newTaskText !== null && newTaskText.trim() !== '') {
+                    li.querySelector('.task-text').textContent = newTaskText;
+                }
+            }
+        </script>
+    </section> --> 
+
+    <section id="weather-app" style="background-image: url(https://images.unsplash.com/photo-1514632595-4944383f2737?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+        <h2>Weather App Example</h2>
+        <div id="weather-container">
+            <input type="text" id="city-input" placeholder="Enter city name">
+            <button id="get-weather-btn" onclick="getWeather()">Get Weather</button>
+            <div id="weather-result"></div>
+        </div>
+    
+        <script>
+            function getWeather() {
+                const cityInput = document.getElementById('city-input');
+                const weatherResult = document.getElementById('weather-result');
+                const cityName = cityInput.value.trim();
+                const apiKey = 'fb1ebf7d798194e8a40033c512a49e09';
+    
+                if (cityName !== '') {
+                    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+    
+                    // Using Axios to make the API call
+                    axios.get(apiUrl)
+                        .then(response => {
+                            const weatherData = response.data;
+                            const temperature = `${weatherData.main.temp}°C`;
+                            const condition = weatherData.weather[0].description;
+                            const resultText = `Weather in ${cityName}: ${temperature}, ${condition}`;
+                            weatherResult.textContent = resultText;
+                            cityInput.value = '';
+                        })
+                        .catch(error => {
+                            console.error('Error fetching weather data:', error);
+                            weatherResult.textContent = 'Failed to fetch weather data.';
+                        });
+                }
+            }
+        </script>
+    </section>
+    
+    <!-- <section id="tictactoe" style="background-image: url(https://images.unsplash.com/photo-1560403022-0a173b4d0ef1?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+        <h2>Tic-Tac-Toe Game</h2>
+        <div id="board-container">
+            <table id="tic-tac-toe-board">
+                <tr>
+                    <td id="cell-1" onclick="makeMove(1)"></td>
+                    <td id="cell-2" onclick="makeMove(2)"></td>
+                    <td id="cell-3" onclick="makeMove(3)"></td>
+                </tr>
+                <tr>
+                    <td id="cell-4" onclick="makeMove(4)"></td>
+                    <td id="cell-5" onclick="makeMove(5)"></td>
+                    <td id="cell-6" onclick="makeMove(6)"></td>
+                </tr>
+                <tr>
+                    <td id="cell-7" onclick="makeMove(7)"></td>
+                    <td id="cell-8" onclick="makeMove(8)"></td>
+                    <td id="cell-9" onclick="makeMove(9)"></td>
+                </tr>
+            </table>
+            <div id="game-status"></div>
+            <button onclick="resetGame()">Reset Game</button>
+        </div>
+        <script>
+            let currentPlayer = 'X';
+            let gameBoard = ['', '', '', '', '', '', '', '', ''];
+            let gameActive = true;
+        
+            function makeMove(cellIndex) {
+                if (gameBoard[cellIndex - 1] === '' && gameActive) {
+                    gameBoard[cellIndex - 1] = currentPlayer;
+                    const cellElement = document.getElementById(`cell-${cellIndex}`);
+                    cellElement.innerText = currentPlayer;
+                    cellElement.style.color = currentPlayer === 'X' ? 'black' : 'black';
+        
+                    if (checkWin() || checkTie()) {
+                        gameActive = false;
+                        document.getElementById('game-status').innerText = `Game Over! ${checkWin() ? currentPlayer + ' wins!' : 'It\'s a tie!'}`;
+                    } else {
+                        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                        document.getElementById('game-status').innerText = `Current Player: ${currentPlayer}`;
+                    }
+                }
+            }
+        
+            function checkWin() {
+                const winPatterns = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+                    [0, 4, 8], [2, 4, 6] 
+                ];
+        
+                for (const pattern of winPatterns) {
+                    const [a, b, c] = pattern;
+                    if (gameBoard[a] !== '' && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                        return true;
+                    }
+                }
+        
+                return false;
+            }
+        
+            function checkTie() {
+                return !gameBoard.includes('') && !checkWin();
+            }
+        
+            function resetGame() {
+                currentPlayer = 'X';
+                gameBoard = ['', '', '', '', '', '', '', '', ''];
+                gameActive = true;
+        
+                // Reset the board
+                for (let i = 1; i <= 9; i++) {
+                    const cellElement = document.getElementById(`cell-${i}`);
+                    cellElement.innerText = '';
+                    cellElement.style.color = 'black';
+                }
+        
+                document.getElementById('game-status').innerText = 'Current Player: X';
+            }
+        </script>   
+</section>
+<section>
+    <h1>PIM POM</h1>
+  <input type="number" id="numberInput">
+  <button onclick="checkDivisibility()">Check</button>
+
+  <script>
+    function checkDivisibility() {
+      const numberInput = document.getElementById('numberInput').value;
+      const number = parseInt(numberInput, 10);
+      
+      if (isNaN(number)) {
+        console.log('Please enter a valid number.');
+        return;
+      }
+
+      const pim = 3;
+      const pom = 5;
+
+      if (number % pim === 0 && number % pom === 0) {
+        console.log(`PimPom`);
+      } else if (number % pim === 0) {
+        console.log(`Pim`);
+      } else if (number % pom === 0) {
+        console.log(`Pom`);
+      } 
+    }
+  </script>
+
+</section>
+    <footer>
+        <p>&copy; 2023 Integration of HTML Websites</p>
+    </footer> -->
+</body>
+</html>
